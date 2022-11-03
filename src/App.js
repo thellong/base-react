@@ -19,17 +19,30 @@ class App extends React.Component {
     });
   }
 
+  onChange = (event) => {
+    this.setState({
+      name: event.target.value,
+    });
+  };
+
+  onSubmit = (event) => {
+    event.preventDefault();
+    console.log(this.state);
+  };
+
   render() {
     return (
       <div>
         Hello {this.state.name} I'm {this.state.age}
-        <button
-          onClick={(event) => {
-            this.clickHandle(event);
-          }}
-        >
-          Click me
-        </button>
+        <form onSubmit={(event) => this.onSubmit(event)}>
+          <input
+            type="text"
+            onChange={(event) => {
+              this.onChange(event);
+            }}
+          />
+          <button>Submit</button>
+        </form>
       </div>
     );
   }
