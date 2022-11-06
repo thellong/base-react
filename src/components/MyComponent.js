@@ -2,6 +2,7 @@
 // function component
 
 import React from "react";
+import DisplayInfor from "./DisplayInfor";
 import UserInfor from "./UserInfor";
 
 class MyComponent extends React.Component {
@@ -10,6 +11,9 @@ class MyComponent extends React.Component {
     return (
       <div>
         <UserInfor />
+        <br />
+        <br />
+        <DisplayInfor name="Long pro vcl." age="20" />
       </div>
     );
   }
