@@ -30,7 +30,7 @@ class AddUserInfor extends React.Component {
 
   onSubmit = (event) => {
     event.preventDefault();
-    this.props.addNewUser({
+    this.props.addUserInfor({
       id: Math.floor(Math.random() * 100 + 1) + "-id",
       name: this.state.name,
       age: this.state.age,

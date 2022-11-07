@@ -8,16 +8,27 @@ import AddUserInfor from "./AddUserInfor";
 class MyComponent extends React.Component {
   state = {
     listUsers: [
-      { id: 1, name: "Le Van Long", age: 15 },
+      { id: 1, name: "Le Van Long", age: 20 },
       { id: 2, name: "Ngo Bao Chau", age: 50 },
-      { id: 3, name: "Albert Einstein", age: 70 },
+      { id: 3, name: "Abert Einstein", age: 70 },
     ],
   };
 
-  addNewUser = (userObj) => {
-    console.log(userObj);
+  addUserInfor = (userObj) => {
     this.setState({
       listUsers: [userObj, ...this.state.listUsers],
+    });
+  };
+
+  removeUserInfor = (userId) => {
+    // let listUsersClone = [...this.state.listUsers];
+    // listUsersClone = listUsersClone.filter((user) => user.id !== userId);
+    // this.setState({
+    //   listUsers: listUsersClone,
+    // });
+
+    this.setState({
+      listUsers: this.state.listUsers.filter((user) => user.id !== userId),
     });
   };
 
@@ -25,10 +36,13 @@ class MyComponent extends React.Component {
   render() {
     return (
       <div>
-        <AddUserInfor addNewUser={this.addNewUser} />
+        <AddUserInfor addUserInfor={this.addUserInfor} />
         <br />
         <br />
-        <DisplayInfor listUsers={this.state.listUsers} />
+        <DisplayInfor
+          listUsers={this.state.listUsers}
+          removeUserInfor={this.removeUserInfor}
+        />
       </div>
     );
   }
