@@ -1,4 +1,5 @@
 import React from "react";
+import "./scss/DisplayInfor.scss";
 
 class DisplayInfor extends React.Component {
   state = {
@@ -15,7 +16,7 @@ class DisplayInfor extends React.Component {
     // console.log(this.props.listUsers);
     const listUsers = this.props.listUsers;
     return (
-      <div>
+      <div className="display-infor-container">
         Display Information of user
         <br />
         <button
