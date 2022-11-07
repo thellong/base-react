@@ -6,7 +6,11 @@ import AddUserInfor from "./components/AddUserInfor";
 
 class App extends React.Component {
   render() {
-    return <MyComponent />;
+    return (
+      <div className="app-container">
+        <MyComponent />
+      </div>
+    );
   }
 }
 

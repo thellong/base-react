@@ -10,7 +10,7 @@ class MyComponent extends React.Component {
     listUsers: [
       { id: 1, name: "Le Van Long", age: 15 },
       { id: 2, name: "Ngo Bao Chau", age: 50 },
-      { id: 3, name: "Arb Einstern", age: 70 },
+      { id: 3, name: "Albert Einstein", age: 70 },
     ],
   };
 
