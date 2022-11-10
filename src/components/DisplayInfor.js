@@ -1,16 +1,7 @@
 import React from "react";
 import "./scss/DisplayInfor.scss";
-
+/*
 class DisplayInfor extends React.Component {
-  state = {
-    isShow: true,
-  };
-
-  hideShow = () => {
-    this.setState({
-      isShow: !this.state.isShow,
-    });
-  };
   render() {
     // const { name, age } = this.props;
     // console.log(this.props.listUsers);
@@ -26,7 +17,7 @@ class DisplayInfor extends React.Component {
         >
           {this.state.isShow === true ? "Hide" : "Show"}
         </button>
-        {this.state.isShow && (
+        {true && (
           <div>
             {listUsers.map((user) => {
               return (
@@ -50,5 +41,36 @@ class DisplayInfor extends React.Component {
     );
   }
 }
+*/
+
+const DisplayInfor = (props) => {
+  const listUsers = props.listUsers;
+  return (
+    <div className="display-infor-container">
+      Display Information of user
+      <br />
+      {true && (
+        <div>
+          {listUsers.map((user) => {
+            return (
+              <div key={user.id} className={+user.age > 18 ? "green" : "red"}>
+                <div>
+                  <div>My name is {user.name}</div>
+                  <div>I'm {user.age}</div>
+                </div>
+                <div>
+                  <button onClick={() => props.removeUserInfor(user.id)}>
+                    Remove
+                  </button>
+                </div>
+                <hr />
+              </div>
+            );
+          })}
+        </div>
+      )}
+    </div>
+  );
+};
 
 export default DisplayInfor;
