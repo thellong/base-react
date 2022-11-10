@@ -1,12 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 
+/*
 class AddUserInfor extends React.Component {
   state = {
     name: "",
     age: "",
   };
 
-  clickHandle(event) {
+  clickHandle() {
     console.log("My name is: ", this.state.name, "and I'm ", this.state.age);
 
     // merge state => react class
@@ -64,5 +65,53 @@ class AddUserInfor extends React.Component {
     );
   }
 }
+*/
+
+const AddUserInfor = (props) => {
+  const [name, setName] = useState("");
+  const [age, setAge] = useState("");
+
+  const onSubmit = (event) => {
+    event.preventDefault();
+    props.addUser({
+      id: Math.floor(Math.random() * 100 + 1),
+      name: name,
+      age: age,
+    });
+  };
+
+  const onChangeName = (event) => {
+    setName(event.target.value);
+  };
+
+  const onChangeAge = (event) => {
+    setAge(event.target.value);
+  };
+
+  return (
+    <div>
+      Hello {name} I'm {age}
+      <form onSubmit={(event) => onSubmit(event)}>
+        <input
+          value={name}
+          type="text"
+          onChange={(event) => {
+            onChangeName(event);
+          }}
+        />
+        <br />
+        <input
+          value={age}
+          type="text"
+          onChange={(event) => {
+            onChangeAge(event);
+          }}
+        />
+        <br />
+        <button>Submit</button>
+      </form>
+    </div>
+  );
+};
 
 export default AddUserInfor;
