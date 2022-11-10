@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./scss/DisplayInfor.scss";
 /*
 class DisplayInfor extends React.Component {
@@ -45,11 +45,26 @@ class DisplayInfor extends React.Component {
 
 const DisplayInfor = (props) => {
   const listUsers = props.listUsers;
+  // useState sẽ trả về 2 giá trị,
+  //1 là state,
+  //2 là hàm được sử dụng để cập nhật state đó.
+  const [isShowListUser, setShowListUser] = useState(true);
+
+  const handleClickShowListUser = () => {
+    // Hàm này là giá trị thứ 2 được trả về từ hàm useState.
+    setShowListUser(!isShowListUser);
+  };
+
   return (
     <div className="display-infor-container">
       Display Information of user
+      <div>
+        <span onClick={() => handleClickShowListUser()}>
+          {isShowListUser === true ? "Hide list user" : "Show list user"}
+        </span>
+      </div>
       <br />
-      {true && (
+      {isShowListUser && (
         <div>
           {listUsers.map((user) => {
             return (
