@@ -59,9 +59,7 @@ const MyComponent = (props) => {
   const [listUsers, setListUsers] = useState(listUserDefault);
 
   const addUser = (userObj) => {
-    let listUsersClone = [...listUsers];
-    listUsersClone = [userObj, ...listUsers];
-    setListUsers(listUsersClone);
+    setListUsers([userObj, ...listUsers]);
   };
 
   const removeUser = (userId) => {
