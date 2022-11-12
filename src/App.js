@@ -12,7 +12,11 @@ const App = () => {
         <div className="sidenav-container"></div>
       </div>
       <div className="app-content">
-        {/* Bên trong cha, muốn render con ở chỗ nào -- outlet chỗ đó */}
+        {/* 
+          Bên trong cha, muốn render con ở chỗ nào -- outlet chỗ đó.
+          Outlet tag specify the place, where the child component
+          will be renderted within the parent component.
+        */}
         <Outlet />
       </div>
     </div>
