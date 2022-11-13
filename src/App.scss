@@ -6,3 +6,80 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+@media (min-width: 1920px) {
+  .container, .container-lg, .container-md, .container-xl, .container-sm {
+    max-width: 1450px !important;
+  }
+}
+.app-container {
+  .header-container {
+
+    .btn-login {
+      border-radius: 5px;
+      border: 1px solid #535353;
+      margin-right: 10px;
+      padding: 0 20px;
+      height: 40px;
+    }
+
+    .btn-signup {
+      border-radius: 5px;
+      padding: 2px 20px;
+      background: #000000;
+      height: 40px;
+      color: white;
+    }
+
+    .btn-signup:hover {
+      background: #303030;
+    }
+    .navbar {
+      z-index: 10;
+      background-color: rgba(0, 0, 0, 0) !important;
+
+      .nav-link {
+        &.active {
+          color: blueviolet;
+        }
+      }
+    }
+  }
+
+  .home-container {
+    .home-content {
+      padding: 100px;
+      position: relative;
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    .content-title {
+      font-size: 45px;
+      font-weight: 600;
+    }
+
+    .content-body {
+      font-size: 25px;
+    }
+
+    .content-button {
+      border-radius: 5px;
+      height: 40px;
+      padding: 0 20px;
+      color: white;
+      background-color: #303030;
+      &:hover {
+        background-color: #000000;
+      }
+    }
+  }
+}
+
+video {
+  position: fixed;
+  bottom: 0;
+  width: 100vw;
+}
