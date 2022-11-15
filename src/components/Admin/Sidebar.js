@@ -8,18 +8,12 @@ import {
   SidebarFooter,
   SidebarContent,
 } from "react-pro-sidebar";
-import {
-  FaGem,
-  FaHeart,
-  FaTachometerAlt,
-  FaList,
-  FaGithub,
-  FaRegLaughWink,
-} from "react-icons/fa";
+import { FaTachometerAlt, FaGithub, FaRegLaughWink } from "react-icons/fa";
 
 import { AiOutlineSmile } from "react-icons/ai";
 
 import sidebarBg from "../../assets/sb.jpg";
+import { Link } from "react-router-dom";
 const Sidebar = (props) => {
   const { image, collapsed, toggled, handleToggleSidebar } = props;
   return (
@@ -55,11 +49,15 @@ const Sidebar = (props) => {
               suffix={<span className="badge red">New</span>}
             >
               Dashboard
+              <Link to="/admins" />
             </MenuItem>
           </Menu>
           <Menu iconShape="circle">
             <SubMenu icon={<FaRegLaughWink />} title="Features">
-              <MenuItem>Users manage</MenuItem>
+              <MenuItem>
+                Users manage
+                <Link to="/admins/manage-users" />
+              </MenuItem>
               <MenuItem>Quizes manage</MenuItem>
               <MenuItem>Questions manage</MenuItem>
             </SubMenu>
