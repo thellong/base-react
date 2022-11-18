@@ -1,9 +1,9 @@
-import axios from "axios";
 import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { FcPlus } from "react-icons/fc";
 import { toast } from "react-toastify";
+import { addNewUser } from "../../../services/apiService";
 
 const ModalAddUser = (props) => {
   // State of the props received from the parent component.
@@ -52,24 +52,7 @@ const ModalAddUser = (props) => {
       toast.error("Invalid email !");
     }
 
-    /*let data = {
-      email: email,
-      password: password,
-      username: username,
-      role: role,
-      avatar: avatar,
-    };
-    */
-    //console.log(data);
-
-    const data = new FormData();
-    data.append("email", email);
-    data.append("password", password);
-    data.append("username", username);
-    data.append("role", role);
-    data.append("avatar", avatar);
-
-    //let res = await axios.post("link to api", data);
+    let res = await addNewUser(email, password, username, role, avatar);
 
     // Check api state received from server.
     /*if (res.data && res.data.error_message === 0) {
