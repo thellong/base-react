@@ -1,10 +1,11 @@
+import axios from "axios";
 import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { FcPlus } from "react-icons/fc";
 
 const ModalAddUser = (props) => {
-  const [show, setShow] = useState(false);
+  const { show, setShow } = props;
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
@@ -18,6 +19,12 @@ const ModalAddUser = (props) => {
 
   const handleClose = () => {
     setShow(false);
+    setEmail("");
+    setPassword("");
+    setUsername("");
+    setRole("");
+    setAvatar("");
+    setPreviewImage("");
   };
 
   const handleFileUpload = (event) => {
@@ -29,9 +36,28 @@ const ModalAddUser = (props) => {
     }
   };
 
+  const handleSubmit = async () => {
+    // let data = {
+    //   email: email,
+    //   password: password,
+    //   username: username,
+    //   role: role,
+    //   avatar: avatar,
+    // };
+    // console.log(data);
+    const data = new FormData();
+    data.append("email", email);
+    data.append("password", password);
+    data.append("username", username);
+    data.append("role", role);
+    data.append("avatar", avatar);
+
+    let res = await axios.post("link to api", data);
+  };
+
   return (
     <>
-      <Button
+      {/* <Button
         variant="primary"
         onClick={() => handleShow()}
         style={{
@@ -39,7 +65,7 @@ const ModalAddUser = (props) => {
         }}
       >
         Add user
-      </Button>
+      </Button> */}
 
       <Modal
         show={show}
@@ -128,7 +154,7 @@ const ModalAddUser = (props) => {
           <Button variant="secondary" onClick={() => handleClose()}>
             Close
           </Button>
-          <Button variant="primary" onClick={() => handleClose}>
+          <Button variant="primary" onClick={() => handleSubmit()}>
             Add
           </Button>
         </Modal.Footer>

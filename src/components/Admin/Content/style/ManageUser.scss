@@ -30,3 +30,27 @@
         }
     }
 }
+
+.manage-user-container {
+    padding: 10px;
+    .title {
+        font-weight: 600;
+        font-size: 20px;
+    }
+
+    .users-content {
+        .btn-add-new {
+            button {
+                padding: 10px;
+                margin: 15px 0;
+                border: none;
+                border-radius: 5px;
+                background-color: rgb(118, 118, 213);
+            }
+        }
+    }
+
+    .users-display {
+        padding: 10px;
+    }
+}
