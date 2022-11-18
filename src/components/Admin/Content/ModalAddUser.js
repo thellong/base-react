@@ -3,19 +3,19 @@ import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { FcPlus } from "react-icons/fc";
+import { toast } from "react-toastify";
 
 const ModalAddUser = (props) => {
+  // State of the props received from the parent component.
   const { show, setShow } = props;
+
+  // States of this component.
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
   const [role, setRole] = useState("USER");
   const [avatar, setAvatar] = useState("");
   const [previewImage, setPreviewImage] = useState("");
-
-  const handleShow = () => {
-    setShow(true);
-  };
 
   const handleClose = () => {
     setShow(false);
@@ -36,15 +36,32 @@ const ModalAddUser = (props) => {
     }
   };
 
+  const validateEmail = (email) => {
+    return String(email)
+      .toLowerCase()
+      .match(
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      );
+  };
+
   const handleSubmit = async () => {
-    // let data = {
-    //   email: email,
-    //   password: password,
-    //   username: username,
-    //   role: role,
-    //   avatar: avatar,
-    // };
-    // console.log(data);
+    // Validate data.
+    const isValidEmail = validateEmail(email);
+
+    if (!isValidEmail) {
+      toast.error("Invalid email !");
+    }
+
+    /*let data = {
+      email: email,
+      password: password,
+      username: username,
+      role: role,
+      avatar: avatar,
+    };
+    */
+    //console.log(data);
+
     const data = new FormData();
     data.append("email", email);
     data.append("password", password);
@@ -52,21 +69,22 @@ const ModalAddUser = (props) => {
     data.append("role", role);
     data.append("avatar", avatar);
 
-    let res = await axios.post("link to api", data);
+    //let res = await axios.post("link to api", data);
+
+    // Check api state received from server.
+    /*if (res.data && res.data.error_message === 0) {
+      toast.success(res.data.error_message);
+      handleClose();
+    }
+
+    if (res.data && res.data.error_message !== 0) {
+      toast.error(res.data.error_message);
+    }
+    */
   };
 
   return (
     <>
-      {/* <Button
-        variant="primary"
-        onClick={() => handleShow()}
-        style={{
-          margin: "10px",
-        }}
-      >
-        Add user
-      </Button> */}
-
       <Modal
         show={show}
         onHide={handleClose}
