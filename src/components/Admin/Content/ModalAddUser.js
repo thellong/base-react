@@ -3,11 +3,11 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { FcPlus } from "react-icons/fc";
 import { toast } from "react-toastify";
-import { addNewUser } from "../../../services/apiService";
 
 const ModalAddUser = (props) => {
   // State of the props received from the parent component.
   const { show, setShow } = props;
+  const { listUsers, setListUsers } = props;
 
   // States of this component.
   const [email, setEmail] = useState("");
@@ -44,26 +44,41 @@ const ModalAddUser = (props) => {
       );
   };
 
-  const handleSubmit = async () => {
-    // Validate data.
-    const isValidEmail = validateEmail(email);
+  // const handleSubmit = async () => {
+  //   // Validate data.
+  //   const isValidEmail = validateEmail(email);
 
-    if (!isValidEmail) {
-      toast.error("Invalid email !");
-    }
+  //   if (!isValidEmail) {
+  //     toast.error("Invalid email !");
+  //   }
 
-    let res = await addNewUser(email, password, username, role, avatar);
+  //   let res = await addNewUser(email, password, username, role, avatar);
 
-    // Check api state received from server.
-    /*if (res.data && res.data.error_message === 0) {
-      toast.success(res.data.error_message);
-      handleClose();
-    }
+  //   // Check api state received from server.
+  //   /*if (res.data && res.data.error_message === 0) {
+  //     toast.success(res.data.error_message);
+  //     handleClose();
+  //     await props.api_from_parent_need_to_be_recalled();
+  //   }
 
-    if (res.data && res.data.error_message !== 0) {
-      toast.error(res.data.error_message);
-    }
-    */
+  //   if (res.data && res.data.error_message !== 0) {
+  //     toast.error(res.data.error_message);
+  //   }
+  //   */
+  // };
+
+  const handleSubmit = () => {
+    let data = {
+      id: Math.floor(Math.random() * 100 + 1),
+      email: email,
+      username: username,
+      password: password,
+      role: role,
+    };
+
+    setListUsers([data, ...listUsers]);
+    toast.success("Add user successfully");
+    handleClose();
   };
 
   return (
