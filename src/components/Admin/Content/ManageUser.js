@@ -4,10 +4,13 @@ import { FcPlus } from "react-icons/fc";
 import { useState } from "react";
 import { useEffect } from "react";
 import DisplayUser from "./DisplayUser";
-import { getAllUsers } from "../../../services/apiService";
+import ModalUpdateUser from "./ModalUpdateUser";
 
 const ManageUser = (props) => {
   const [showModalCreateUser, setShowModalCreateUser] = useState(false);
+  const [showModalUpdateUser, setShowModalUpdateUser] = useState(false);
+  const [dataUpdate, setDataUpdate] = useState({});
+
   const [listUsers, setListUsers] = useState([
     {
       id: 43,
@@ -66,6 +69,11 @@ const ManageUser = (props) => {
      */
   };
 
+  const handleUpdateUser = (user) => {
+    setShowModalUpdateUser(true);
+    setDataUpdate(user);
+  };
+
   return (
     <div className="manage-user-container">
       <div className="title">Manage Users</div>
@@ -78,7 +86,10 @@ const ManageUser = (props) => {
         </div>
       </div>
       <div className="users-display">
-        <DisplayUser listUsers={listUsers} />
+        <DisplayUser
+          listUsers={listUsers}
+          handleUpdateUser={handleUpdateUser}
+        />
       </div>
       <ModalAddUser
         show={showModalCreateUser}
@@ -86,6 +97,11 @@ const ManageUser = (props) => {
         listUsers={listUsers}
         setListUsers={setListUsers}
         fetchAllUsers={fetchAllUsers}
+      />
+      <ModalUpdateUser
+        show={showModalUpdateUser}
+        setShow={setShowModalUpdateUser}
+        dataUpdate={dataUpdate}
       />
     </div>
   );

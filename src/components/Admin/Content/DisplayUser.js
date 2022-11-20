@@ -29,7 +29,10 @@ const DisplayUser = (props) => {
                     <button className="btn btn-outline-secondary btn-sm">
                       <GrView />
                     </button>
-                    <button className="btn btn-outline-warning btn-sm mx-3">
+                    <button
+                      onClick={() => props.handleUpdateUser(user)}
+                      className="btn btn-outline-warning btn-sm mx-3"
+                    >
                       <GrUpdate />
                     </button>
                     <button className="btn btn-outline-danger btn-sm">
