@@ -1,13 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { FcPlus } from "react-icons/fc";
 import { toast } from "react-toastify";
+import _ from "lodash";
 
-const ModalAddUser = (props) => {
+const ModalUpdateUser = (props) => {
   // State of the props received from the parent component.
-  const { show, setShow } = props;
-  const { listUsers, setListUsers } = props;
+  const { show, setShow, listUsers, setListUsers, dataUpdate } = props;
 
   // States of this component.
   const [email, setEmail] = useState("");
@@ -16,6 +16,17 @@ const ModalAddUser = (props) => {
   const [role, setRole] = useState("USER");
   const [avatar, setAvatar] = useState("");
   const [previewImage, setPreviewImage] = useState("");
+
+  useEffect(() => {
+    if (!_.isEmpty(dataUpdate)) {
+      setEmail(dataUpdate.email);
+      setPassword(dataUpdate.password);
+      setUsername(dataUpdate.username);
+      setRole(dataUpdate.role);
+      setAvatar("");
+      setPreviewImage("");
+    }
+  }, [dataUpdate]);
 
   const handleClose = () => {
     setShow(false);
@@ -35,37 +46,6 @@ const ModalAddUser = (props) => {
       setPreviewImage("");
     }
   };
-
-  const validateEmail = (email) => {
-    return String(email)
-      .toLowerCase()
-      .match(
-        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-      );
-  };
-
-  // const handleSubmit = async () => {
-  //   // Validate data.
-  //   const isValidEmail = validateEmail(email);
-
-  //   if (!isValidEmail) {
-  //     toast.error("Invalid email !");
-  //   }
-
-  //   let res = await addNewUser(email, password, username, role, avatar);
-
-  //   // Check api state received from server.
-  //   /*if (res.data && res.data.error_message === 0) {
-  //     toast.success(res.data.error_message);
-  //     handleClose();
-  //     await props.api_from_parent_need_to_be_recalled();
-  //   }
-
-  //   if (res.data && res.data.error_message !== 0) {
-  //     toast.error(res.data.error_message);
-  //   }
-  //   */
-  // };
 
   const handleSubmit = () => {
     let data = {
@@ -91,7 +71,7 @@ const ModalAddUser = (props) => {
         className="modal-add-user"
       >
         <Modal.Header closeButton>
-          <Modal.Title>Add new user</Modal.Title>
+          <Modal.Title>Update user</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <form className="row g-3">
@@ -101,9 +81,7 @@ const ModalAddUser = (props) => {
                 type="email"
                 className="form-control"
                 value={email}
-                onChange={(event) => {
-                  setEmail(event.target.value);
-                }}
+                disabled
               />
             </div>
             <div className="col-md-6">
@@ -133,6 +111,7 @@ const ModalAddUser = (props) => {
               <label className="form-label">ROLE </label>
               <select
                 className="form-select"
+                value={role}
                 onChange={(event) => {
                   setRole(event.target.value);
                 }}
@@ -159,7 +138,7 @@ const ModalAddUser = (props) => {
 
             <div className="col-md-12 img-preview">
               {previewImage ? (
-                <img src={previewImage} />
+                <img src={previewImage} alt="previewImage" />
               ) : (
                 <span>Preview image</span>
               )}
@@ -171,7 +150,7 @@ const ModalAddUser = (props) => {
             Close
           </Button>
           <Button variant="primary" onClick={() => handleSubmit()}>
-            Add
+            Update
           </Button>
         </Modal.Footer>
       </Modal>
@@ -179,4 +158,4 @@ const ModalAddUser = (props) => {
   );
 };
 
-export default ModalAddUser;
+export default ModalUpdateUser;
