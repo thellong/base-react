@@ -5,11 +5,14 @@ import { useState } from "react";
 import { useEffect } from "react";
 import DisplayUser from "./DisplayUser";
 import ModalUpdateUser from "./ModalUpdateUser";
+import ModalDisplayUser from "./ModalDisplayUser";
 
 const ManageUser = (props) => {
   const [showModalCreateUser, setShowModalCreateUser] = useState(false);
   const [showModalUpdateUser, setShowModalUpdateUser] = useState(false);
+  const [showModalDisplayUser, setShowModalDisplayUser] = useState(false);
   const [dataUpdate, setDataUpdate] = useState({});
+  const [userInfo, setUserInfo] = useState({});
 
   const [listUsers, setListUsers] = useState([
     {
@@ -74,6 +77,11 @@ const ManageUser = (props) => {
     setDataUpdate(user);
   };
 
+  const handleDisplayUser = (user) => {
+    setShowModalDisplayUser(true);
+    setUserInfo(user);
+  };
+
   return (
     <div className="manage-user-container">
       <div className="title">Manage Users</div>
@@ -89,6 +97,7 @@ const ManageUser = (props) => {
         <DisplayUser
           listUsers={listUsers}
           handleUpdateUser={handleUpdateUser}
+          handleDisplayUser={handleDisplayUser}
         />
       </div>
       <ModalAddUser
@@ -102,6 +111,11 @@ const ManageUser = (props) => {
         show={showModalUpdateUser}
         setShow={setShowModalUpdateUser}
         dataUpdate={dataUpdate}
+      />
+      <ModalDisplayUser
+        show={showModalDisplayUser}
+        setShow={setShowModalDisplayUser}
+        userInfo={userInfo}
       />
     </div>
   );

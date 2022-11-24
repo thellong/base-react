@@ -26,7 +26,10 @@ const DisplayUser = (props) => {
                   <td>{user.username}</td>
                   <td>{user.role}</td>
                   <td>
-                    <button className="btn btn-outline-secondary btn-sm">
+                    <button
+                      onClick={() => props.handleDisplayUser(user)}
+                      className="btn btn-outline-secondary btn-sm"
+                    >
                       <GrView />
                     </button>
                     <button
